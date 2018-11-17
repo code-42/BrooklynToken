@@ -2,15 +2,32 @@
     <head>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         <script src="./dist/main.js"></script>
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+        <title>BrooKlyN ToKeN</title>
     </head>
   <body>
-        <div id="message"></div>
-        <br>
-        Token Name: <input type="text" id="tokenName" placeholder="BrooklynToken" /><br><br>
-        Token Symbol: <input type="text" id="tokenSymbol" placeholder="BKNTKN" /><br><br>
-        Initial Supply: <input type="text" id="initialSupply" placeholder="BrooklynToken" /><br><br>
+
+    <!-- 
+    constructor() public {
+        tokenSymbol = "BKLYN";
+        tokenName = "BrooklynToken";
+        decimals = 18;
+        _totalSupply = 1000;
+        balanceOf[owner] = _totalSupply;
+    }
+     -->
+       
+        <div id="tokenName"></div>
+        <div id="tokenSymbol"></div>
+        <div id="decimals"></div>
+        <div id="_totalSupply"></div>
         
-        <button id="set_message">Transfer</button>
+        <br>
+        Initial Supply: <input type="text" id="initialSupply" value="100" /><br><br>
+        Token Name: <input type="text" id="tokenName" value="BrooklynToken" /><br><br>
+        Token Symbol: <input type="text" id="tokenSymbol" value="BKNTKN" /><br><br>
+         
+        <button id="transfer">Transfer</button>
         <p>After you submit the transfer, Metamask will ask for confirmation.
             <br>
             It takes several seconds to return because the transaction
