@@ -26,6 +26,7 @@ window.addEventListener('load', () => {
     contract = new my_web3.eth.Contract(abi, contract_address);
     console.log(contract);
 
+    // get the users address
     my_web3.eth.getAccounts((error, result) => {
         if(error) {
           console.log(error);
