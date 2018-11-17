@@ -41,24 +41,21 @@ window.addEventListener('load', () => {
       });
 
     // read member variables values from constructor and display in web page 
-    // contract.methods.tokenName().call((error, result) => {
-        contract.tokenName.call((error, result) => {
+    contract.methods.tokenName().call((error, result) => {
         if(error) {
             return console.log(error);
         }
         $('#tokenName').text(result);
     });
 
-    // contract.methods.tokenSymbol().call((error, result) => {
-        contract.tokenSymbol.call((error, result) => {
+    contract.methods.tokenSymbol().call((error, result) => {
         if(error) {
             return console.log(error);
         }
         $('#tokenSymbol').text(result);
     });
 
-    // contract.methods._totalSupply().call((error, result) => {
-        contract._totalSupply.call((error, result) => {
+    contract.methods._totalSupply().call((error, result) => {
         if(error) {
             return console.log(error);
         }
