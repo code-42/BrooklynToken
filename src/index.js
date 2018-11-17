@@ -15,4 +15,27 @@ window.addEventListener('load', () => {
     contract = web3.eth.contract(abi).at(contract_address);
     console.log("16. contract: ");
     console.log(contract);
+
+    // read members values from constructor and display in web page 
+    contract.tokenName.call((error, result) => {
+        if(error) {
+            return console.log(error);
+        }
+        $('#tokenName').text(result);
+    });
+
+    contract.tokenSymbol.call((error, result) => {
+        if(error) {
+            return console.log(error);
+        }
+        $('#tokenSymbol').text(result);
+    });
+
+    contract._totalSupply.call((error, result) => {
+        if(error) {
+            return console.log(error);
+        }
+        $('#_totalSupply').text(result);
+    });
+
 });
