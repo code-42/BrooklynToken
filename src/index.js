@@ -41,4 +41,32 @@ window.addEventListener('load', () => {
         $('#_totalSupply').text(result);
     });
 
+
+    // BrooklynToken.constructor(1000, "BrooklynToken","BKNTKN");
+    // to: 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c
+    function setTransfer() {
+        // event.preventDefault();
+        let to_address = $('#to_address').val();
+        let transfer_amount = $('#transfer_amount').val();
+        console.log("to_address, transfer_amount: ");
+        console.log(to_address, transfer_amount);
+        
+        
+        // contract.methods.transfer(to_address, transfer_amount).send(
+        contract.setTransfer.sendTransaction(
+            to_address, transfer_amount,
+            {gasPrice: web3.toWei(4.1, 'Gwei')},
+            (error, result) => {
+                if(error) {
+                    console.log("62. err: ");
+                    console.log(result);
+                    return console.log(error);
+                }
+                console.log("txhash: " + result); 
+            }
+        ).catch((error) => {
+            console.log("104. Error: " + error);
+        });
+    }
+
 });
