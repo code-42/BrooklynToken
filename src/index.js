@@ -41,6 +41,9 @@ window.addEventListener('load', () => {
         $('#_totalSupply').text(result);
     });
 
+    // attach the button to event handler
+    $('#transfer').click(setTransfer);
+
     // BrooklynToken.constructor(1000, "BrooklynToken","BKNTKN");
     // to: 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c
     function setTransfer() {
