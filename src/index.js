@@ -41,20 +41,17 @@ window.addEventListener('load', () => {
         $('#_totalSupply').text(result);
     });
 
-
     // BrooklynToken.constructor(1000, "BrooklynToken","BKNTKN");
     // to: 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c
     function setTransfer() {
-        // event.preventDefault();
+        event.preventDefault();
         let to_address = $('#to_address').val();
         let transfer_amount = $('#transfer_amount').val();
         console.log("to_address, transfer_amount: ");
         console.log(to_address, transfer_amount);
         
         
-        // contract.methods.transfer(to_address, transfer_amount).send(
-        contract.setTransfer.sendTransaction(
-            to_address, transfer_amount,
+        contract.methods.transfer(to_address, transfer_amount).send(
             {gasPrice: web3.toWei(4.1, 'Gwei')},
             (error, result) => {
                 if(error) {
