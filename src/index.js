@@ -9,11 +9,17 @@ const contract_address="0xD607b7d409713659182AEa7367ab84BaB63EA38D";
 const abi = [{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"_totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"tokenName","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"tokenSymbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
 
 let contract;
+let my_web3;
 
 window.addEventListener('load', () => {
     if(typeof(web3) === 'undefined') {
-      return console.log("Metamask is not installed.");
+    //   return console.log("Metamask is not installed.");
+        my_web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl));
+    } else {
+        my_web3 = new Web3(web3.currentProvider); 
     }
+
+    console.log(my_web3);
     contract = web3.eth.contract(abi).at(contract_address);
 
     // read member variables values from constructor and display in web page 
@@ -41,7 +47,7 @@ window.addEventListener('load', () => {
         $('#_totalSupply').text(result);
     });
 
-    // attach the button to event handler
+    // attach the event handler to the button
     $('#transfer').click(setTransfer);
 
     // BrooklynToken.constructor(1000, "BrooklynToken","BKNTKN");
