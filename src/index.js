@@ -110,3 +110,11 @@ const abi = [
 		"type": "constructor"
 	}
 ];
+
+let contract;
+window.addEventListener('load', () => {
+    if(typeof(web3) === 'undefined') {
+      return console.log("Metamask is not installed.");
+    }
+    contract = web3.eth.contract(abi).at(contract_address);
+});
