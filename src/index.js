@@ -10,6 +10,8 @@ const abi = [{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"
 
 let contract;
 let my_web3;
+let account;
+const rpcUrl = "https://ropsten.infura.io";
 
 window.addEventListener('load', () => {
     if(typeof(web3) === 'undefined') {
@@ -20,7 +22,22 @@ window.addEventListener('load', () => {
     }
 
     console.log(my_web3);
-    contract = web3.eth.contract(abi).at(contract_address);
+    // contract = web3.eth.contract(abi).at(contract_address);
+    contract = new my_web3.eth.Contract(abi, contract_address);
+    console.log(contract);
+
+    my_web3.eth.getAccounts((error, result) => {
+        if(error) {
+          console.log(error);
+        } else if(result.length == 0) {
+          console.log("You are not logged in");
+        } else {
+          account = result[0];
+          contract.options.from = account;
+        }
+      }).catch((error) => {
+        console.log("Error: " + error);
+      });
 
     // read member variables values from constructor and display in web page 
     // contract.methods.tokenName().call((error, result) => {
