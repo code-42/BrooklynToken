@@ -4,8 +4,6 @@
 import Web3 from "web3";
 
 const contract_address="0xd74A0F3606dbc4AD636760a751ecACBBc294D288"; 
-// const contract_address="0xA874BA31E700f487d816cd28D0285aff62b738A1"; // out of gas
-// const contract_address="0xD607b7d409713659182AEa7367ab84BaB63EA38D";
 const abi = [{"constant":true,"inputs":[],"name":"initialSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"tokenName","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"tokenSymbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"_initialSupply","type":"uint256"},{"name":"_tokenName","type":"string"},{"name":"_tokenSymbol","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
 
 
@@ -76,7 +74,7 @@ window.addEventListener('load', () => {
         console.log("to_address, transfer_amount: ");
         console.log(to_address, transfer_amount);
         
-        
+        let token_symbol;
         contract.methods.transfer(to_address, transfer_amount).send(
             {gasPrice: web3.toWei(4.1, 'Gwei')},
             (error, result) => {
@@ -86,10 +84,29 @@ window.addEventListener('load', () => {
                     return console.log(error);
                 }
                 console.log("txhash: " + result); 
+                console.log("transferred " + transfer_amount + " " + token_symbol + " to " + to_address);
+
+                $('#to_address').text("&nbsp;");
+                $('#transfer_amount').text("&nbsp;");
             }
         ).catch((error) => {
             console.log("104. Error: " + error);
         });
+
+
+        contract.methods.tokenSymbol().call((error, result) => {
+            if(error) {
+                return console.log(error);
+            }
+            // console.log(result);
+            token_symbol = result;
+            $('#token_symbol_2').text(token_symbol);
+        })
+
+        // display message in web page
+        $('#transfer_amount_2').text(transfer_amount);
+        $('#to_address_2').text(to_address);
+
     }
 
 });
