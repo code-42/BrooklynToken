@@ -13,6 +13,7 @@ let account;
 const rpcUrl = "https://ropsten.infura.io";
 
 window.addEventListener('load', () => {
+    document.getElementById("transferred").style.display = "none";
     if(typeof(web3) === 'undefined') {
     //   return console.log("Metamask is not installed.");
         my_web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl));
@@ -106,6 +107,13 @@ window.addEventListener('load', () => {
         // display message in web page
         $('#transfer_amount_2').text(transfer_amount);
         $('#to_address_2').text(to_address);
+
+        let x = document.getElementById("transferred");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
 
     }
 
