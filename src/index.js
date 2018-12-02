@@ -3,17 +3,20 @@
 
 import Web3 from "web3";
 
-const contract_address="0xd74A0F3606dbc4AD636760a751ecACBBc294D288"; 
+// const ROPSTEN_contract_address="0xd74A0F3606dbc4AD636760a751ecACBBc294D288"; 
+const contract_address="0x634f708de4fe0ad41096ede4fa24ff36b84b5a9f";
 const abi = [{"constant":true,"inputs":[],"name":"initialSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"tokenName","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"tokenSymbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"_initialSupply","type":"uint256"},{"name":"_tokenName","type":"string"},{"name":"_tokenSymbol","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
 
 
 let contract;
 let my_web3;
 let account;
-const rpcUrl = "https://ropsten.infura.io";
+// const rpcUrl = "https://ropsten.infura.io";
+const rpcUrl = "http://127.0.0.1:7545/";
 
 window.addEventListener('load', () => {
-    document.getElementById("transferred").style.display = "none";
+    let msg = document.getElementById("message");
+    msg.style.display = "none";
     if(typeof(web3) === 'undefined') {
     //   return console.log("Metamask is not installed.");
         my_web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl));
@@ -24,7 +27,7 @@ window.addEventListener('load', () => {
     console.log(my_web3);
     // contract = web3.eth.contract(abi).at(contract_address);
     contract = new my_web3.eth.Contract(abi, contract_address);
-    console.log("contract_address: " + contract_address);
+    console.log("contract_address IS: " + contract_address);
     console.log(contract);
 
     // get the users address
@@ -72,6 +75,9 @@ window.addEventListener('load', () => {
         event.preventDefault();
         let to_address = $('#to_address').val();
         let transfer_amount = $('#transfer_amount').val();
+        if (msg.style.display === "inline") {
+            msg.style.display = "none";
+        } 
         console.log("to_address, transfer_amount: ");
         console.log(to_address, transfer_amount);
         
@@ -79,9 +85,14 @@ window.addEventListener('load', () => {
         contract.methods.transfer(to_address, transfer_amount).send(
             {gasPrice: web3.toWei(4.1, 'Gwei')},
             (error, result) => {
+                if (msg.style.display === "none") {
+                    msg.style.display = "inline";
+                } 
+
                 if(error) {
                     console.log("62. err: ");
                     console.log(result);
+                    failMessage(msg);
                     return console.log(error);
                 }
                 console.log("txhash: " + result); 
@@ -89,6 +100,13 @@ window.addEventListener('load', () => {
 
                 $('#to_address').text("&nbsp;");
                 $('#transfer_amount').text("&nbsp;");
+
+                // display message in web page
+                $('#transfer_amount_to').text(transfer_amount);
+                $('#to_address_to').text(to_address);
+
+                successMessage(transfer_amount, token_symbol, to_address);
+
             }
         ).catch((error) => {
             console.log("104. Error: " + error);
@@ -101,20 +119,20 @@ window.addEventListener('load', () => {
             }
             // console.log(result);
             token_symbol = result;
-            $('#token_symbol_2').text(token_symbol);
+            $('#token_symbol_to').text(token_symbol);
         })
-
-        // display message in web page
-        $('#transfer_amount_2').text(transfer_amount);
-        $('#to_address_2').text(to_address);
-
-        let x = document.getElementById("transferred");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-
     }
+
+    function successMessage(transfer_amount, token_symbol, to_address){
+        // console.log("transferred " + transfer_amount + " " + token_symbol + " to " + to_address);
+        msg.style.color = "green";
+        msg.innerHTML = "Success! Transferred " + transfer_amount + " " + token_symbol + " to " + to_address;
+        console.log(msg.innerHTML);
+    };
+
+    function failMessage(msg){
+        msg.style.color = "red";
+        msg.innerHTML = "MetaMask: User denied transaction.";
+    };
 
 });
