@@ -3,16 +3,14 @@
 
 import Web3 from "web3";
 
-// const ROPSTEN_contract_address="0xd74A0F3606dbc4AD636760a751ecACBBc294D288"; 
-const contract_address="0x634f708de4fe0ad41096ede4fa24ff36b84b5a9f";
+const contract_address="0xd74A0F3606dbc4AD636760a751ecACBBc294D288"; 
 const abi = [{"constant":true,"inputs":[],"name":"initialSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"tokenName","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"tokenSymbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"_initialSupply","type":"uint256"},{"name":"_tokenName","type":"string"},{"name":"_tokenSymbol","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
 
 
 let contract;
 let my_web3;
 let account;
-// const rpcUrl = "https://ropsten.infura.io";
-const rpcUrl = "http://127.0.0.1:7545/";
+const rpcUrl = "https://ropsten.infura.io";
 
 window.addEventListener('load', () => {
     let msg = document.getElementById("message");
