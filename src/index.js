@@ -25,7 +25,7 @@ window.addEventListener('load', () => {
     console.log(my_web3);
     // contract = web3.eth.contract(abi).at(contract_address);
     contract = new my_web3.eth.Contract(abi, contract_address);
-    console.log("contract_address IS: " + contract_address);
+    console.log("contract_address: " + contract_address);
     console.log(contract);
 
     // get the users address
@@ -64,8 +64,11 @@ window.addEventListener('load', () => {
         $('#initialSupply').text(result);
     });
 
-    // attach the event handler to the button
+    // attach the event handler to the transfer button
     $('#transfer').click(setTransfer);
+
+    // attach the event handler to the clear button
+    $('#clear').click(setClear);
 
     // BrooklynToken.constructor(1000, "BrooklynToken","BKNTKN");
     // to: 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c
@@ -132,5 +135,9 @@ window.addEventListener('load', () => {
         msg.style.color = "red";
         msg.innerHTML = "MetaMask: User denied transaction.";
     };
+
+    function setClear(){
+        msg.style.display = "none";
+    }
 
 });
