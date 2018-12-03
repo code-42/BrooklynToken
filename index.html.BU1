@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" type="text/css" href="./src/index.css">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -12,13 +10,10 @@
         <link rel="icon" href="data:;base64,iVBORw0KGgo=">
         <title>BrooKlyN ToKeN</title>
     </head>
-    <body>
-
-        <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1">Welcome to the Brooklyn Token Ethereum dApp</span>
-        </nav>
+  <body>
 
         <p>
+            <h1>Welcome to the Brooklyn Token Ethereum dApp.</h1> 
             You must have MetaMask installed in your Chrome Firefox or Opera browser for this blockchain app to work.
             There are others, but MetaMask is by far the most popular and the one I recommend. 
             So if you don't have MetaMask installed, head on over to <a href="https://metamask.io/" target="_blank">MetaMask.io</a>
@@ -35,19 +30,9 @@
         Total Supply: <span id="initialSupply"></span><br>
         
         <br>
-        <form>
-            <!-- https://getbootstrap.com/docs/4.0/components/forms/ -->
-            <div class="form-inline">
-                <label class="sr-only" for="transfer_amount">Transfer amounts</label>
-                <input type="number" id="transfer_amount" class="form-control" placeholder="amount" required />
-                <label class="sr-only" for="to_address">Transfer to address</label>
-                <div class="col-8"><input type="text" id="to_address" class="form-control" placeholder="Transfer to address: 0x..." required pattern="0x" /></div>
-            </div>    
-            <button type="submit" class="btn btn-primary mb-2" id="transfer">Transfer</button>
-            &nbsp;
-            <button type="reset" class="btn btn-primary mb-2" id="clear">Clear</button>
-        </form>
-        
+        Transfer to: <input type="text" id="to_address" value="0x14723a09acff6d2a60dcdf7aa4aff308fddc160c" /><br><br>
+        Transfer amount: <input type="text" id="transfer_amount" value="2" />
+        <button id="transfer">Transfer</button>
 
         <p>After you submit the transfer, Metamask will ask for confirmation.
             <br>
@@ -57,11 +42,5 @@
 
         <div id="message""></div>
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    </body>
+  </body>
 </html>
