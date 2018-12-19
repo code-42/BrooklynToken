@@ -36,6 +36,7 @@
                 Token Name: <input type="text" name="tokenName" id="tokenName"></span><br>
                 Token Symbol: <input type="text" name="tokenSymbol" id="tokenSymbol"></span><br>
                 Total Supply: <input type="text" name="initialSupply" id="initialSupply"></span><br> 
+                <button type="submit" id="createToken" class="btn btn-primary mb-2" >Create Token</button>
             </form>
         </div>
 
@@ -53,9 +54,9 @@
                 <label class="sr-only" for="to_address">Transfer to address</label>
                 <div class="col-8"><input type="text" id="to_address" class="form-control" placeholder="Transfer to address: 0x..." required pattern="0x" /></div>
             </div>    
-            <button type="submit" class="btn btn-primary mb-2" id="transfer">Transfer</button>
+            <button type="submit" id="transfer" class="btn btn-primary mb-2">Transfer</button>
             &nbsp;
-            <button type="reset" class="btn btn-primary mb-2" id="clear">Clear</button>
+            <button type="reset" id="clear" class="btn btn-primary mb-2">Clear</button>
         </form>
         
 

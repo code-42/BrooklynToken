@@ -111,4 +111,16 @@ window.addEventListener('load', () => {
 
     }
 
+    // attach the event handler to the Create Token button
+    $('#createToken').click(createToken);
+
+    function createToken() {
+        event.preventDefault();
+        let tokenName = $('#tokenName').val();
+        let tokenSymbol = $('#tokenSymbol').val();
+        let initialSupply = $('#initialSupply').val();
+        console.log("tokenName, tokenSymbol, initialSupply: ");
+        console.log(tokenName, tokenSymbol, initialSupply);
+
+    }
 });
