@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="./src/index.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="./dist/main.js"></script>
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+        <title>BrooKlyN ToKeN</title>
+    </head>
+  <body>
+
+        Token Name: <span id="tokenName"></span><br>
+        Token Symbol: <span id="tokenSymbol"></span><br>
+        Total Supply: <span id="initialSupply"></span><br>
+        
+        <br>
+        Transfer to: <input type="text" id="to_address" value="0x14723a09acff6d2a60dcdf7aa4aff308fddc160c" /><br><br>
+        Transfer amount: <input type="text" id="transfer_amount" value="2" />
+        <button id="transfer">Transfer</button>
+
+        <p>After you submit the transfer, Metamask will ask for confirmation.
+            <br>
+            It takes several seconds to return because the transaction
+            has to be approved.  That's just the way the blockchain works.
+        </p>
+
+        <p>
+            Transferred <span id="transfer_amount_2"></span>  
+            <span id="token_symbol_2"></span>  
+            to <span id="to_address_2"></span><br>
+        </p>
+  </body>
